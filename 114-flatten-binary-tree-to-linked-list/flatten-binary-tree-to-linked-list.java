@@ -28,6 +28,6 @@ class Solution {
             }
             curr = curr.right;
         }
-        
+       
     }
 }
