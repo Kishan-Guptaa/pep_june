@@ -1,21 +1,20 @@
 class MyCircularQueue {
     private int head;
-    private int[] queue;
-    private int capacity;
     private int count;
-
+    private int[] queue;
+    int capacity;
     public MyCircularQueue(int k) {
-        queue = new int[k];
-        capacity = k;
         head = 0;
         count = 0;
+        queue = new int[k];
+        capacity = k;
     }
     
     public boolean enQueue(int value) {
         if(isFull()){
             return false;
         }
-        int tail = (count + head) % capacity;
+        int tail = (head + count) % capacity;
         queue[tail] = value;
         count++;
         return true;
@@ -25,7 +24,7 @@ class MyCircularQueue {
         if(isEmpty()){
             return false;
         }
-        head = (head + 1) % capacity;
+        head = (head+1) % capacity;
         count--;
         return true;
     }
