@@ -24,10 +24,12 @@ class Solution {
             visited[ch - 'a'] = true;
         }
 
-        StringBuilder sb = new StringBuilder();
-        while(!st.isEmpty()){
-            sb.append(st.pop());
+        StringBuilder ans = new StringBuilder();
+
+        for (char ch : st) {
+            ans.append(ch);
         }
-        return sb.reverse().toString();
+
+        return ans.toString();
     }
 }
