@@ -2,7 +2,7 @@ class Solution {
     public int threeSumMulti(int[] arr, int target) {
         int MOD = 1000000007;
         Arrays.sort(arr);
-        int ans = 0;
+        long ans = 0;
         int  n = arr.length;
         for(int i=0; i<n-2; i++){
             int left = i+1;
@@ -17,8 +17,8 @@ class Solution {
                 }
                 else{
                     if(arr[left] != arr[right]){
-                        int leftCount = 1;
-                        int rightCount = 1;
+                        long leftCount = 1;
+                        long rightCount = 1;
                         while(left + 1 < right && arr[left] == arr[left+ 1]){
                             leftCount++;
                             left++;
@@ -34,13 +34,13 @@ class Solution {
                         right--;
                     }
                     else{
-                        int m = right - left + 1;
+                        long m = right - left + 1;
                         ans = (ans + m * (m - 1) / 2) % MOD;
                         break;
                     }
                 }
             }
         }
-        return ans;
+        return (int) ans;
     }
 }
