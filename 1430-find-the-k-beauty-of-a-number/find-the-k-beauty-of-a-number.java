@@ -3,11 +3,12 @@ class Solution {
         
         String str = String.valueOf(num); 
         int left = 0;
-        int right = 0;
+        // int right = 0;
         int count = 0;
-        while(right < str.length()){
+        for(int right = 0; right < str.length(); right++){
             if(right - left + 1 < k){
-                right++;
+                // right++;
+                continue;
             }
             else if(right - left + 1 == k){
                 String s = str.substring(left,right+1);
@@ -16,7 +17,7 @@ class Solution {
                     count++;
                 }
                 left++;
-                right++;
+                // right++;
             }
         }
         return count;
