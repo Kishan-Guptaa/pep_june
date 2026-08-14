@@ -5,8 +5,9 @@ class Solution {
         for(char ch : s.toCharArray()){
             if(ch == '('){
                 st.push(ch);
-            }else if(ch == ')'){
                 ans = Math.max(ans, st.size());
+            }else if(ch == ')'){
+                
                 st.pop();
             }
         }
