@@ -1,7 +1,7 @@
 class Solution {
     public long bowlSubarrays(int[] nums) {
         Stack<Integer>st = new Stack<>();
-        int ans = 0;
+        long ans = 0;
         for(int i=0; i<nums.length; i++){
             while(!st.isEmpty() && nums[st.peek()] < nums[i]){
                 int j = st.pop();
