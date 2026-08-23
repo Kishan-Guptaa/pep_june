@@ -9,6 +9,8 @@ class Solution {
         paragraph = paragraph.replaceAll("[^a-z]", " ");
         String[] words = paragraph.split(" ");
         HashMap<String, Integer>map = new HashMap<>();
+        int count = 0;
+        StringBuilder sb = new StringBuilder();
         for(String word : words){
             if(word.length() == 0){
                 continue;
@@ -17,17 +19,12 @@ class Solution {
                 continue;
             }
             map.put(word, map.getOrDefault(word, 0 ) + 1);
-        }
-
-        String ans = "";
-        int max = 0;
-        for(String word : map.keySet()){
-            if(map.get(word) > max){
-                max = map.get(word);
-                ans = word;
+            if (map.get(word) > count) {
+                sb = new StringBuilder(word);
+                count = map.get(word);
             }
         }
-        return ans;
+        return sb.toString();
 
     }
 }
