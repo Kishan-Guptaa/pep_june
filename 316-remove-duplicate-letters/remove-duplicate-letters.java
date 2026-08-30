@@ -9,27 +9,19 @@ class Solution {
 
         for(char ch : s.toCharArray()){
             freq[ch - 'a']--;
-
             if(visited[ch-'a']){
                 continue;
             }
-
-            while (!st.isEmpty()
-                    && st.peek() > ch
-                    && freq[st.peek() - 'a'] > 0) {
-
-                visited[st.pop() - 'a'] = false;
+            while(!st.isEmpty() && st.peek() > ch && freq[st.peek()-'a'] > 0){
+                 visited[st.pop() - 'a'] = false;
             }
             st.push(ch);
-            visited[ch - 'a'] = true;
+             visited[ch - 'a'] = true;
         }
-
-        StringBuilder ans = new StringBuilder();
-
-        for (char ch : st) {
-            ans.append(ch);
+        StringBuilder sb = new StringBuilder();
+        for(char ch : st){
+            sb.append(ch);
         }
-
-        return ans.toString();
+        return sb.toString();
     }
 }
