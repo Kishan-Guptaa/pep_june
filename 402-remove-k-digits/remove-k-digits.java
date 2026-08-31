@@ -11,6 +11,7 @@ class Solution {
             }
             st.push(ch);
         }
+
         while(!st.isEmpty() && k > 0){
             st.pop();
             k--;
@@ -24,7 +25,6 @@ class Solution {
         while(sb.length() > 0 && sb.charAt(0) == '0'){
             sb.deleteCharAt(0);
         }
-
-        return sb.length() == 0 ? "0" :  sb.toString();
+        return sb.length() == 0 ? "0" : sb.toString();
     }
 }
