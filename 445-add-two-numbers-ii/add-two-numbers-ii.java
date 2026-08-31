@@ -9,41 +9,39 @@
  * }
  */
 class Solution {
-    private ListNode reverse(ListNode head){
-        ListNode prev = null;
-        ListNode curr = head;
-        while(curr != null){
-            ListNode next = curr.next;
-            curr.next = prev;
-            prev = curr;
-            curr = next;
-        }
-        return prev;
-    }
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        l1 = reverse(l1);
-        l2 = reverse(l2);
-        ListNode dummy = new ListNode(0);
-        ListNode temp = dummy;
-        int carry = 0;
-        
-        while(l1 != null || l2 != null || carry != 0){
-            int sum = carry;
-            if(l1 != null){
-                sum += l1.val;
-                l1 = l1.next;
-            }
-
-            if(l2 != null){
-                sum += l2.val;
-                l2 = l2.next;
-            }
-
-            temp.next = new ListNode(sum % 10);
-            carry = sum / 10;
+        Stack<Integer>st1 = new Stack<>();
+        Stack<Integer>st2 = new Stack<>();
+        ListNode temp = l1;
+        while(temp != null){
+            st1.push(temp.val);
             temp = temp.next;
         }
+        ListNode temp2 = l2;
+        while(temp2 != null){
+            st2.push(temp2.val);
+            temp2 = temp2.next;
+        }
+        int carry = 0;
+        ListNode head = null;
 
-        return reverse(dummy.next);
+        while(!st1.isEmpty() || !st2.isEmpty() || carry != 0){
+            int sum = carry;
+             if (!st1.isEmpty()) {
+                sum += st1.pop();
+            }
+
+            if (!st2.isEmpty()) {
+                sum += st2.pop();
+            }
+
+            carry = sum / 10;
+            ListNode node = new ListNode(sum % 10);
+            node.next = head;
+            head = node;
+        }
+
+        return head;
+
     }
 }
