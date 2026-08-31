@@ -1,36 +1,35 @@
 class Solution {
     public String decodeString(String s) {
-        Stack<Integer>countStack = new Stack<>();
-        Stack<String>stringStack = new Stack<>();
-
-        int currentCount = 0;
-        String currentString = "";
-
+        Stack<Integer>CountSt = new Stack<>();
+        Stack<String>StringSt = new Stack<>();
+        int num = 0;
+        String currString = "";
         for(char ch : s.toCharArray()){
             if(Character.isDigit(ch)){
-                currentCount = currentCount * 10 + (ch - '0');
+                num = num * 10 + (ch - '0');
             }
             else if(ch == '['){
-                countStack.push(currentCount);
-                stringStack.push(currentString);
-
-                currentCount = 0;
-                currentString = "";
+                CountSt.push(num);
+                StringSt.push(currString);
+                num = 0;
+                currString = "";
             }
             else if(ch == ']'){
-                int repeatedTime =countStack.pop();
-                String prevString = stringStack.pop();
+                int rptime = CountSt.pop();
+                String preString = StringSt.pop();
 
-                StringBuilder sb = new StringBuilder(prevString);
-                for(int i=0; i<repeatedTime; i++){
-                    sb.append(currentString);
-                } 
-                currentString = sb.toString();
+                StringBuilder sb = new StringBuilder(preString);
+                for(int i=0; i<rptime; i++){
+                    sb.append(currString);
+                }
+                currString = sb.toString();
             }
             else{
-                currentString += ch;
+                currString += ch;
             }
+
+
         }
-        return currentString;
+        return currString;
     }
 }
