@@ -7,13 +7,17 @@ class Solution {
             suffix[i] = Math.min(suffix[i+1], nums[i]);
         }
 
-        int prefix = Integer.MIN_VALUE;
-        for(int i=0; i<n; i++){
-            prefix = Math.max(prefix, nums[i]);
-            if( (long) prefix - suffix[i] <= k){
-                return i;
-            }
+       int[] prefix  = new int[n];
+       prefix[0] = nums[0];
+       for(int i=1; i<n; i++){
+        prefix[i] = Math.max(prefix[i-1], nums[i]);
+       }
+
+       for(int i=0; i<n; i++){
+        if(prefix[i] - suffix[i] <= k){
+            return i;
         }
+       }
         return -1;
     }
 }
