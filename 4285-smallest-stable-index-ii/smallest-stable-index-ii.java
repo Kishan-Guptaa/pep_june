@@ -10,7 +10,7 @@ class Solution {
         int prefix = Integer.MIN_VALUE;
         for(int i=0; i<n; i++){
             prefix = Math.max(prefix, nums[i]);
-            if(Math.abs(prefix - suffix[i]) <= k){
+            if( (long) prefix - suffix[i] <= k){
                 return i;
             }
         }
