@@ -1,57 +1,53 @@
 class Solution {
-    private List<Integer> topoSort(int n, List<Integer>[] adj){
-        int[] indegree = new int[n];
-        for(int i=0; i<n; i++){
-            indegree[i] = adj[i].size();
+    private List<Integer>topoSort(int V, List<List<Integer>>adj){
+        int[] indegree = new int[V];
+        for(int i=0; i<V; i++){
+            indegree[i] = adj.get(i).size();
         }
 
         Queue<Integer>q = new LinkedList<>();
-        for(int i=0; i<n; i++){
+        for(int i=0; i<V; i++){
             if(indegree[i] == 1){
                 q.add(i);
             }
         }
 
-        int remainingNode = n;
+        int remainingNode = V;
         while(remainingNode > 2){
             int size = q.size();
             remainingNode -= size;
             for(int i=0; i<size; i++){
-                int leaf = q.remove();
-                for(int neighbors : adj[leaf]){
-                    indegree[neighbors]--;
-                    if(indegree[neighbors] == 1){
-                        q.add(neighbors);
+                int node = q.remove();
+                for(int neighbor : adj.get(node)){
+                    indegree[neighbor]--;
+                    if(indegree[neighbor] == 1){
+                        q.add(neighbor);
                     }
                 }
             }
         }
-
-        List<Integer>ans = new ArrayList<>();
+        List<Integer>topo = new ArrayList<>();
         while(!q.isEmpty()){
-            ans.add(q.remove());
+            topo.add(q.poll());
         }
-
-        return ans;
+        return topo;
     }
     public List<Integer> findMinHeightTrees(int n, int[][] edges) {
         if(n == 1){
             return Arrays.asList(0);
         }
-
-        List<Integer>[] adj = new ArrayList[n];
+        List<List<Integer>>adj = new ArrayList<>();
         for(int i=0; i<n; i++){
-            adj[i] = new ArrayList<>();
+            adj.add(new ArrayList<>());
+        }
+        for(int[] edge : edges){
+            int u = edge[0];
+            int v = edge[1];
+
+            adj.get(u).add(v);
+            adj.get(v).add(u);
         }
 
-        for(int[] it : edges){
-            int u = it[0];
-            int v = it[1];
-            adj[u].add(v);
-            adj[v].add(u);
-
-        }
-
-        return topoSort(n, adj);
+        return topoSort(n, adj); 
     }
 }
