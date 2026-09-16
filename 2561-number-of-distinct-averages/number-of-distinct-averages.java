@@ -6,7 +6,7 @@ class Solution {
         Set<Integer>st = new HashSet<>();
         while(i < n){
             int avg = nums[i] + nums[n];
-            System.out.print(avg);
+           
             st.add(avg);
             i++;
             n--;
