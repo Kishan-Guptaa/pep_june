@@ -9,9 +9,7 @@ class Solution {
         while(left < right){
             double value = (nums[left] + nums[right]) / 2.0;
            
-           if(ans > value){
-            ans = value;
-           }
+           ans = Math.min(ans, value);
            left++;
            right--;
         }
