@@ -1,6 +1,6 @@
 class Solution {
     public int[] shortestToChar(String s, char c) {
-        int n = s.length();
+        int n =s.length();
         int[] ans = new int[n];
         int prev = -n;
         for(int i=0; i<n; i++){
@@ -17,7 +17,6 @@ class Solution {
             }
             ans[i] = Math.min(ans[i], prev - i);
         }
-
         return ans;
     }
 }
