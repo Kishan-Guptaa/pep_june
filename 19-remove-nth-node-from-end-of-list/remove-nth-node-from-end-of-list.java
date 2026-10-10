@@ -10,13 +10,13 @@
  */
 class Solution {
     private ListNode reverse(ListNode head){
-        ListNode temp = head;
         ListNode prev = null;
+        ListNode temp = head;
         while(temp != null){
-            ListNode tempp1 = temp.next;
+            ListNode curr = temp.next;
             temp.next = prev;
             prev = temp;
-            temp = tempp1;
+            temp = curr;
         }
         return prev;
     }
@@ -32,7 +32,6 @@ class Solution {
         }
         temp.next = temp.next.next;
         head = reverse(head);
-
         return head;
     }
 }
