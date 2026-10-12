@@ -10,9 +10,9 @@ class Solution {
                 if(st.isEmpty()){
                     return false;
                 }
-                char top = st.pop();
+                char top = st.peek();
                 if(ch == '}' && top == '{' || ch == ')' && top == '(' || ch == ']' && top == '['){
-                    continue;
+                    st.pop();
                 }
                 else{
                     return false;
