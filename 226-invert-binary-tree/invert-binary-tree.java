@@ -21,18 +21,17 @@ class Solution {
         Queue<TreeNode>q = new LinkedList<>();
         q.add(root);
         while(!q.isEmpty()){
-            TreeNode front = q.poll();
-            TreeNode temp = front.left;
-            front.left = front.right;
-            front.right = temp;
-            if(front.left != null){
-                q.add(front.left);
+            TreeNode node = q.poll();
+            TreeNode temp = node.left;
+            node.left = node.right;
+            node.right = temp;
+            if(node.left != null){
+                q.add(node.left);
             }
-            if(front.right != null){
-                q.add(front.right);
+            if(node.right != null){
+                q.add(node.right);
             }
         }
-
         return root;
     }
 }
