@@ -39,8 +39,8 @@ class Solution {
                 l2 = l2.next;
             }
             temp.next = new ListNode(sum % 10);
-            temp = temp.next;
             carry = sum / 10;
+            temp = temp.next;
 
         }
         return reverse(dummy.next);
