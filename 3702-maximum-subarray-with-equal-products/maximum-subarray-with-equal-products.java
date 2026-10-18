@@ -1,7 +1,7 @@
 class Solution {
     public int maxLength(int[] nums) {
         int n = nums.length;
-        int ans = 1;
+        int ans = 0;
         for(int i=0; i<n; i++){
             int product = 1;
             int gcd = 0;
@@ -10,15 +10,13 @@ class Solution {
                 product *= nums[j];
                 gcd = gcd(gcd, nums[j]);
                 lcm = lcm(lcm, nums[j]);
-
-                if(product == gcd * lcm){
+                if(product == lcm * gcd){
                     ans = Math.max(ans, j - i + 1);
                 }
             }
         }
         return ans;
     }
-
     private int gcd(int a, int b){
         while(b != 0){
             int temp = a % b;
@@ -31,4 +29,5 @@ class Solution {
     private int lcm(int a, int b){
         return a / gcd(a,b) * b;
     }
+
 }
