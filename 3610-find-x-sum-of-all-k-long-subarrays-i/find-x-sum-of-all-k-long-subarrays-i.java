@@ -1,33 +1,28 @@
 class Solution {
     public int[] findXSum(int[] nums, int k, int x) {
-        int n = nums.length;
-        int[] ans = new int[n-k+1];
-        for(int left = 0; left <= n-k; left++){
-            HashMap<Integer, Integer>map = new HashMap<>();
+        int[] ans = new int[nums.length - k + 1];
+        for(int left = 0; left <= nums.length - k; left++){
+            Map<Integer, Integer>map = new HashMap<>();
             for(int i=left; i<left+k; i++){
                 map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
             }
-            List<int[]>ls= new ArrayList<>();
-            for(Map.Entry<Integer, Integer>entry : map.entrySet()){
-                int value = entry.getKey();
-                int freq = entry.getValue();
-                ls.add(new int[]{value, freq});
-            }
-            ls.sort((a,b) ->{
-                if(a[1] != b[1]){
-                    return Integer.compare(b[1], a[1]);
+            ArrayList<Integer>list = new ArrayList<>(map.keySet());
+
+            list.sort((a,b) -> {
+                int fa = map.get(a);
+                int fb = map.get(b);
+                if(fa != fb){
+                    return Integer.compare(fb, fa);
                 }
-                return Integer.compare(b[0],a[0]);
+                return Integer.compare(b, a);
             });
-
             int sum = 0;
-            for(int i=0; i<Math.min(x, ls.size()); i++){
-                int value = ls.get(i)[0];
-                int freq = ls.get(i)[1];
-
-                sum += value * freq;
+            for(int j=0; j<Math.min(x, list.size()); j++){
+                int num = list.get(j);
+                sum += map.get(num) * num;
             }
             ans[left] = sum;
+
         }
         return ans;
     }
