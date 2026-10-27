@@ -8,7 +8,6 @@ class Solution {
             else{
                 st.push(ch);
             }
-            
         }
         StringBuilder sb = new StringBuilder();
         for(char ch : st){
